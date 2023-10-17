@@ -8,7 +8,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use((req, res, next) => {
-  console.log("In another middleware!!!!");
+  res.send("<h1>HELLO!!</>");
 });
 
 const server = http.createServer(app);
