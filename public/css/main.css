@@ -97,3 +97,10 @@ input[type="text"] {
 .btn:hover, .btn:active, .btn:focus {
     background-color: #9e2a2b; /* Red Oxide */
 }
+
+.product-item img {
+    max-width: 30%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

@@ -15,9 +15,13 @@ html(lang="en")
                     li.list-class
                         a.nav-link(href="/admin/add-product") Add Product
         main.main-content
-            h1 Welcome to our Shop
-            div.product-container
-                div.product-item
-                    h2.product-title Product 1
-                    p.product-description Description for product 1...
-                    p.product-price $19.99
+            if prods.length > 0
+                div.product-container
+                    each product in prods
+                        div.product-item
+                            img(src="https://cdn.pixabay.com/photo/2020/10/27/15/14/gift-5691042_640.png", alt=product.title)
+                            h2.product-title #{product.title}
+                            p.product-description #{product.description}
+                            p.product-price $#{product.price}
+            else
+                h1 Welcome to our Shop
