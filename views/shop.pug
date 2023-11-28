@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Shop
+        link(rel="stylesheet", href="/css/main.css")
+    body
+        header.main-header
+            nav.main-nav
+                ul.item-list
+                    li.list-class
+                        a.nav-link(href="/") Shop
+                    li.list-class
+                        a.nav-link(href="/admin/add-product") Add Product
+        main.main-content
+            h1 Welcome to our Shop
+            div.product-container
+                div.product-item
+                    h2.product-title Product 1
+                    p.product-description Description for product 1...
+                    p.product-price $19.99
