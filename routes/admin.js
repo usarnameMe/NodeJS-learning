@@ -7,7 +7,7 @@ const products = [];
 
 // /admin/add-product => GET
 router.get('/add-product', (req, res, next) => {
-  res.render('add-product', { pageTitle: "Add Product" }); // Corrected the template name here
+  res.render('add-product', { pageTitle: "Add Product", path: "/admin/add-product" }); 
 });
 
 // /admin/add-product => POST

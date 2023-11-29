@@ -1,27 +1,17 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title Shop
-        link(rel="stylesheet", href="/css/main.css")
-    body
-        header.main-header
-            nav.main-nav
-                ul.item-list
-                    li.list-class
-                        a.nav-link(href="/") Shop
-                    li.list-class
-                        a.nav-link(href="/admin/add-product") Add Product
-        main.main-content
-            if prods.length > 0
-                div.product-container
-                    each product in prods
-                        div.product-item
-                            img(src="https://cdn.pixabay.com/photo/2020/10/27/15/14/gift-5691042_640.png", alt=product.title)
-                            h2.product-title #{product.title}
-                            p.product-description #{product.description}
-                            p.product-price $#{product.price}
-            else
-                h1 Welcome to our Shop
+extends layouts/main-layout.pug
+
+block styles
+  link(rel="stylesheet", href="/css/main.css")
+
+block content 
+  main.main-content
+    if prods && prods.length > 0
+      div.product-container
+        each product in prods
+          div.product-item
+            img(src="https://cdn.pixabay.com/photo/2020/10/27/15/14/gift-5691042_640.png", alt=product.title)
+            h2.product-title #{product.title}
+            p.product-description #{product.description}
+            p.product-price $#{product.price}
+    else
+      h1 Welcome to our Shop
