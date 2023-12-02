@@ -1,14 +1,14 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #335c67; /* Independence */
-    color: #fff3b0; /* Unmellow Yellow */
+    background-color: #335c67; 
+    color: #fff3b0; 
     line-height: 1.6;
 }
 
 .main-header {
-    background-color: #fff3b0; /* Unmellow Yellow */
-    color: #540b0e; /* Dark Sienna */
+    background-color: #fff3b0; 
+    color: #540b0e; 
     padding: 1rem 2rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -35,19 +35,23 @@ body {
 }
 
 .nav-link:hover, .nav-link:focus {
-    color: #e09f3e; /* Carrot Orange */
+    color: #e09f3e; 
 }
 
 .main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     padding: 1rem;
     text-align: center;
 }
 
 .product-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 1rem;
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-item {
@@ -55,22 +59,34 @@ body {
     border: 1px solid #e09f3e;
     border-radius: 8px;
     padding: 1rem;
+    margin: 1rem;
     color: #540b0e;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* This will distribute space evenly */
+    height: 350px; /* Fixed height for uniformity */
+    width: 250px; /* Fixed width for uniformity */
 }
 
 .product-title {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    font-size: 1.5rem;
 }
+
 
 .product-price {
     font-size: 1.1rem;
     color: #e09f3e;
+    margin-bottom: 0.5rem; /* Add some space above the button */
 }
 form {
     margin-top: 2rem;
     display: inline-block;
     text-align: left;
+    color: #5a3410;
 }
 
 input[type="text"] {
@@ -86,21 +102,23 @@ input[type="text"] {
 
 .btn {
     padding: 0.5rem 1rem;
-    background-color: #e09f3e;
+    background-color: #9e2a2b;
+    color: #fff3b0;
     border: none;
     border-radius: 4px;
-    color: #335c67;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.btn:hover, .btn:active, .btn:focus {
-    background-color: #9e2a2b; /* Red Oxide */
+.btn:hover, .btn:active {
+    background-color: #540b0e;
+    transform: translateY(-3px);
 }
 
 .product-item img {
-    max-width: 30%;
+    max-width: 80%; /* Full width of the card */
     height: auto;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    object-fit: cover; /* This will make sure the image covers the area nicely */
 }
+
