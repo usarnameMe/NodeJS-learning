@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/404.css">
+<%- include('includes/head.ejs') %>
 </head>
-<body>
-    <h1>404 - Page Not Found</h1>
-    <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-    <a href="/">Go to Homepage</a>
-</body>
 
-</html>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <h1>Page Not Found!</h1>
+
+<%- include('includes/end.ejs') %>
