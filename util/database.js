@@ -1,10 +1,17 @@
-import { createPool } from "mysql2";
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
 
-const pool = createPool({
-  host: "localhost",
-  user: "root",
-  database: "node-complete",
-  password: "newStrongPass11$",
-});
+const mongoConnect = callback => {
+  MongoClient.connect(
+    'mongodb+srv://gvn:BnrWp6JUsksNPt70@cluster0.zv8zswi.mongodb.net/?retryWrites=true&w=majority'
+  )
+    .then(client => {
+      console.log('Connected!');
+      callback(client);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
-export default pool.promise();
+module.exports = mongoConnect;
