@@ -1,21 +1,21 @@
-const path = require('path');
+const path = require("path");
 
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database');
+const errorController = require("./controllers/error");
+const mongoConnect = require("./util/database").mongoConnect;
 
 const app = express();
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set("view engine", "ejs");
+app.set("views", "views");
 
-const adminRoutes = require('./routes/admin');
+const adminRoutes = require("./routes/admin");
 // const shopRoutes = require('./routes/shop');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
   // User.findById(1)
@@ -24,14 +24,15 @@ app.use((req, res, next) => {
   //     next();
   //   })
   //   .catch(err => console.log(err));
+  next();
 });
 
-app.use('/admin', adminRoutes);
+app.use("/admin", adminRoutes);
 // app.use(shopRoutes);
 
 app.use(errorController.get404);
 
 mongoConnect(() => {
-  console.log(client);
+  // console.log(client);
   app.listen(3000);
 });
