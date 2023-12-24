@@ -9,8 +9,9 @@ class Product {
   }
   save() {
     const db = getDb();
-    db.collections("products")
-      .insertOne(this)
+    return db
+    .collection("products") // Also, it should be 'collection', not 'collections'
+    .insertOne(this)
       .then((result) => {
         console.log(result);
       })
