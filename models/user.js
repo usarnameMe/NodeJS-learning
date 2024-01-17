@@ -40,6 +40,8 @@ class User {
       .collection('users')
       .updateOne(
         { _id: new ObjectId(this._id) },
+
+        
         { $set: { cart: updatedCart } }
       );
   }
