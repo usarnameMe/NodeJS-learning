@@ -11,24 +11,24 @@ class Product {
     this.userId = userId;
   }
 
-  async save() {
-    try {
-      const db = getDb();
-      let dbOp;
-
-      if (this._id) {
-        // Update the product
-        dbOp = db.collection('products').updateOne({ _id: this._id }, { $set: this });
-      } else {
-        dbOp = db.collection('products').insertOne(this);
-      }
-
-      const result = await dbOp;
-      return result;
-    } catch (err) {
-      console.error('Error in save method:', err);
-      throw err;  // Rethrow the error for handling at a higher level
+  save() {
+    const db = getDb();
+    let dbOp;
+    if (this._id) {
+      // Update the product
+      dbOp = db
+        .collection('products')
+        .updateOne({ _id: this._id }, { $set: this });
+    } else {
+      dbOp = db.collection('products').insertOne(this);
     }
+    return dbOp
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   static fetchAll() {
