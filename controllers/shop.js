@@ -109,18 +109,19 @@ exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   req.user
     .getCart()
-    .then(cart => {
-      return cart.getProducts({ where: { id: prodId } });
-    })
     .then(products => {
-      const product = products[0];
-      return product.cartItem.destroy();
+      const product = products.find(p => p._id.toString() === prodId.toString());
+      if (!product) {
+        throw new Error('Product not found in cart.');
+      }
+      return req.user.deleteItemFromCart(prodId);
     })
     .then(result => {
       res.redirect('/cart');
     })
     .catch(err => console.log(err));
 };
+
 
 exports.postOrder = (req, res, next) => {
   let fetchedCart;
