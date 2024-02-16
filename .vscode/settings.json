@@ -1,0 +1,5 @@
+{
+    "prettier.enable": true,
+    "prettier.singleAttributePerLine": false,
+    "prettier.insertPragma": false
+}
