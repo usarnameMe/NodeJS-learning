@@ -44,12 +44,9 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  if (!req.user) {
-    return res.redirect('/login'); 
-  }
   req.user
     .populate('cart.items.productId')
-    .execPopulate() 
+    .execPopulate()
     .then(user => {
       const products = user.cart.items;
       res.render('shop/cart', {
@@ -61,15 +58,8 @@ exports.getCart = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-
-
-
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
-  if (!req.user) {
-    console.error('User not found in session');
-    return res.redirect('/cart'); 
-  }
   Product.findById(prodId)
     .then(product => {
       return req.user.addToCart(product);
@@ -77,14 +67,8 @@ exports.postCart = (req, res, next) => {
     .then(result => {
       console.log(result);
       res.redirect('/cart');
-    })
-    .catch(err => {
-      console.log(err);
-      next(err);
     });
 };
-
-
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
@@ -106,9 +90,8 @@ exports.postOrder = (req, res, next) => {
       });
       const order = new Order({
         user: {
-          name: req.user.name,
-          userId: req.user,
-          email: req.user.email
+          email: req.user.email,
+          userId: req.user
         },
         products: products
       });
