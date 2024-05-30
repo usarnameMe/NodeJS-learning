@@ -103,3 +103,6 @@ mongoose.connect(MONGODB_URI)
   .catch(err => {
     console.log(err);
   });
+
+// Export the app for Vercel
+module.exports = app;
