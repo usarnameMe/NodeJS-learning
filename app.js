@@ -1,7 +1,8 @@
-const path = require('path');
-const express = require('express');
-const bodyParser = require('body-parser');
+require('dotenv').config();
 const mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
@@ -10,14 +11,19 @@ const multer = require('multer');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-require('dotenv').config();
 const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  console.error("MONGODB_URI is not defined. Please check your environment variables.");
+  process.exit(1);
+}
 
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
 });
+
 const csrfProtection = csrf();
 
 const fileStorage = multer.diskStorage({
@@ -104,5 +110,4 @@ mongoose.connect(MONGODB_URI)
     console.log(err);
   });
 
-// Export the app for Vercel
 module.exports = app;
