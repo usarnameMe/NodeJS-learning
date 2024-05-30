@@ -18,6 +18,8 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
+console.log("Connecting to MongoDB URI:", MONGODB_URI);  
+
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -104,10 +106,11 @@ app.use((error, req, res, next) => {
 
 mongoose.connect(MONGODB_URI)
   .then(result => {
+    console.log("Connected to MongoDB"); 
     app.listen(3000);
   })
   .catch(err => {
-    console.log(err);
+    console.log("Error connecting to MongoDB:", err);  
   });
 
 module.exports = app;
