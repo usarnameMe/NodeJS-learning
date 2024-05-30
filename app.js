@@ -13,12 +13,12 @@ const User = require('./models/user');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
+console.log("MONGODB_URI:", MONGODB_URI); 
+
 if (!MONGODB_URI) {
   console.error("MONGODB_URI is not defined. Please check your environment variables.");
   process.exit(1);
 }
-
-console.log("Connecting to MongoDB URI:", MONGODB_URI);  
 
 const app = express();
 const store = new MongoDBStore({
