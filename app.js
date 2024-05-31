@@ -24,6 +24,14 @@ const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
+}, function(error) {
+  if (error) {
+    console.error('Error creating MongoDBStore:', error);
+  }
+});
+
+store.on('error', function(error) {
+  console.error('Session store error:', error);
 });
 
 const csrfProtection = csrf();
@@ -110,7 +118,7 @@ mongoose.connect(MONGODB_URI)
     app.listen(3000);
   })
   .catch(err => {
-    console.log("Error connecting to MongoDB:", err);  
+    console.error("Error connecting to MongoDB:", err);  
   });
 
 module.exports = app;
