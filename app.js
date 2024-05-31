@@ -11,7 +11,7 @@ const multer = require('multer');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://gvn:BnrWp6JUsksNPt70@ac-uw5zq3k.zv8zswi.mongodb.net/test";
 
 console.log("MONGODB_URI:", MONGODB_URI); 
 
