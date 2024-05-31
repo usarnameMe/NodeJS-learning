@@ -1,41 +1,25 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
 const express = require('express');
+const mongoose = require('mongoose');
 const path = require('path');
-const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
+const bodyParser = require('body-parser');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://gvn:BnrWp6JUsksNPt70@ac-uw5zq3k.zv8zswi.mongodb.net/test";
-
-console.log("MONGODB_URI:", MONGODB_URI); 
-
-if (!MONGODB_URI) {
-  console.error("MONGODB_URI is not defined. Please check your environment variables.");
-  process.exit(1);
-}
+const MONGODB_URI = process.env.MONGODB_URI;
 
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
-}, function(error) {
-  if (error) {
-    console.error('Error creating MongoDBStore:', error);
-  }
-});
-
-store.on('error', function(error) {
-  console.error('Session store error:', error);
 });
 
 const csrfProtection = csrf();
-
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'images');
@@ -44,7 +28,6 @@ const fileStorage = multer.diskStorage({
     cb(null, new Date().toISOString() + '-' + file.originalname);
   }
 });
-
 const fileFilter = (req, file, cb) => {
   if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
     cb(null, true);
@@ -54,7 +37,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set('views', path.join(__dirname, 'views'));
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
@@ -105,20 +88,20 @@ app.get('/500', errorController.get500);
 app.use(errorController.get404);
 
 app.use((error, req, res, next) => {
+  console.error(error); 
   res.status(500).render('500', {
     pageTitle: 'Error!',
     path: '/500',
-    isAuthenticated: req.session.isLoggedIn
+    isAuthenticated: req.session ? req.session.isLoggedIn : false
   });
 });
 
-mongoose.connect(MONGODB_URI)
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => {
-    console.log("Connected to MongoDB"); 
     app.listen(3000);
   })
   .catch(err => {
-    console.error("Error connecting to MongoDB:", err);  
+    console.log('Error connecting to MongoDB:', err);
   });
 
 module.exports = app;
