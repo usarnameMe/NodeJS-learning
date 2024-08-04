@@ -1,38 +1,68 @@
 body {
-  background-color: #f4f4f9;
+  background-color: #e9ebf0;
   color: #333;
   font-family: 'Roboto', sans-serif;
 }
 
-.cart-item {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+.cart__item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.cart-item:hover {
-  transform: scale(1.02);
+.cart__item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
 }
 
-.cart-item h1, .cart-item h2, .cart-item h3 {
+.cart__item h1, .cart__item h2 {
   color: #6200ea;
+  margin: 0 0 10px;
 }
 
-button {
+.cart__item form {
+  display: inline;
+}
+
+.btn {
   background-color: #6200ea;
   border: none;
-  color: #fff;
+  color: #ffffff;
   padding: 10px 20px;
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.3s;
+  display: inline-block;
+  margin-top: 10px;
 }
 
-button:hover {
+.btn:hover {
   background-color: #3700b3;
+  transform: scale(1.05);
+}
+
+.btn.danger {
+  background-color: red;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn.danger:hover {
+  background-color: darkred;
+  transform: scale(1.05);
+}
+
+.centered {
+  text-align: center;
+  margin: 20px 0;
 }

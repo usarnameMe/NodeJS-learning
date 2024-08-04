@@ -67,16 +67,22 @@ label {
 }
 
 .user-message {
+  margin: auto;
+  width: 22%;
+  border: 1px solid #ff4f4f;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background: #ffcccc;
   text-align: center;
-  padding: 10px;
-  margin: 20px 0;
+  color: #cc0000;
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 .user-message--error {
-  background-color: #ffcccc;
+  border-color: #ff4f4f;
+  background: #ffcccc;
   color: #cc0000;
-  border: 1px solid #cc0000;
-  border-radius: 5px;
 }
 
 .centered {
